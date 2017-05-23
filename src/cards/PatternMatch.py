@@ -1,0 +1,2 @@
+class PatternMatch:
+    pass

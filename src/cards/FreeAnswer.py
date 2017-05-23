@@ -1,0 +1,2 @@
+class FreeAnswer:
+    pass
