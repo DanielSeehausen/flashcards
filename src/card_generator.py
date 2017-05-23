@@ -1,8 +1,8 @@
 import sys
 sys.path.insert(0, './cards')
-import FreeAnswer
-import MultipleChoice
-import PatternMatch
+from FreeAnswer import FreeAnswer
+from MultipleChoice import MultipleChoice
+from PatternMatch import PatternMatch
 
 
 dispatch = {
@@ -12,5 +12,4 @@ dispatch = {
 }
 
 def generate_card(card_data):
-    return
-    # return dispatch[card_data[t]](card_data)
+    return dispatch[card_data['t']](card_data)

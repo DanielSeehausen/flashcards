@@ -15,5 +15,5 @@ class Session:
         for topic in topics:
             try:
                 self.topics[topic] = Topic(topic)
-            except ImportError as e:
-                print("Skipping unfound topic: %s" % topic)
+            except ImportError:
+                print("\t--> Skipping unfound topic: %s" % topic)

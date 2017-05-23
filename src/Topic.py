@@ -17,3 +17,6 @@ class Topic:
     def populate_cards(self, card_data):
         for card in card_data:
             self.unsolved_cards.append(generate_card(card))
+            #TODO remove - this just for debugging
+            print(self.unsolved_cards[-1].display_question())
+            print(self.unsolved_cards[-1].display_answer())
