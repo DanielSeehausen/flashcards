@@ -5,6 +5,7 @@ class Session:
     def __init__(self, topics):
         self.get_all_topics() if topics == "all" else self.get_topics(topics)
         self.complete = False
+        self.round = 0
 
     def get_all_topics(self):
         all_topics = False # GET EVERY PATH UNDER DATA

@@ -10,13 +10,22 @@ class Topic:
             print("%s not found in data subdirectory!" % topic_name)
             raise
 
+        self.topic_name = topic_name
         self.solved_cards = []
-        self.unsolved_cards = []
-        self.populate_cards(card_data)
+        self.unsolved_cards = self.generate_all_cards(card_data)
+        self.incorrect_cards = [] # (e.g. cards that the user got incorrect when answering)
+        print(str(self))
 
-    def populate_cards(self, card_data):
+    def generate_all_cards(self, card_data):
+        all_cards = []
         for card in card_data:
-            self.unsolved_cards.append(generate_card(card))
-            #TODO remove - this just for debugging
-            print(self.unsolved_cards[-1].display_question())
-            print(self.unsolved_cards[-1].display_answer())
+            c = generate_card(card)
+            all_cards.append(generate_card(card))
+        return all_cards
+
+    def __str__(self):
+        str_builder = ['***' + self.topic_name + '***\n']
+        all_cards = self.solved_cards + self.unsolved_cards + self.incorrect_cards
+        for idx, card in enumerate(all_cards):
+            str_builder.append(str(idx) + '.\n\t' + str(card) + '\n')
+        return '\n'.join(str_builder) + '\n'

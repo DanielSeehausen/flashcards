@@ -6,8 +6,4 @@ class FreeAnswer(Card):
         Card.__init__(self, data)
 
     def check_answer(self, input):
-        if input in self.answers:
-            self.solved = True
-            return True
-        else:
-            return False
+        return True if input[0].lower() is 'y' else false
