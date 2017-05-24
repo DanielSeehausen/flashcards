@@ -27,5 +27,5 @@ class Topic:
         str_builder = ['***' + self.topic_name + '***\n']
         all_cards = self.solved_cards + self.unsolved_cards + self.incorrect_cards
         for idx, card in enumerate(all_cards):
-            str_builder.append(str(idx) + '.\n\t' + str(card) + '\n')
+            str_builder.append(str(idx+1) + '.\t' + str(card) + '\n')
         return '\n'.join(str_builder) + '\n'
