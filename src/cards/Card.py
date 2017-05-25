@@ -5,6 +5,10 @@ class Card:
         self.type = data['t']
         self.questions = data['q'] if type(data['q']) is list else [data['q']]
         self.answers = data['a'] if type(data['a']) is list else [data['a']]
+        if 'n' in data:
+            self.notes = data['n'] if type(data['n']) is list else [data['n']]
+        if 'm' in data:
+            self.choices = data['m'] if type(data['n']) is list else [data['n']]
 
     def display_header(self):
         print('\t*****')
@@ -15,12 +19,18 @@ class Card:
     def display_question(self):
         self.display_header()
         for question in self.questions:
-            print('\t' + question)
+            print('\n\t[Q] ' + question)
         print('')
 
     def display_answer(self):
         for answer in self.answers:
-            print('\t' + answer)
+            print('\t[A] ' + answer)
+        self.display_footer()
+
+    def display_note(self):
+        if self.notes:
+            for msg in self.notes:
+                print('\t' + msg)
         self.display_footer()
 
     # we converted singular answers to a list so we can check against all options

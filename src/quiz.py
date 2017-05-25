@@ -30,6 +30,7 @@ def start(topics=[]):
         print("\nNo user specified topics found!")
         topics = get_all_topic_names()
     session = Session(topics)
+    session.prep_round()
 
 def how_to(_):
     print('\nStart game <1> to begin testing with flash cards from all topics available OR with optional topic names, (separated by single spaces), to test only the cards within those topics (i.e. <1 topic_a topic_b>).')
@@ -58,7 +59,7 @@ def print_main_menu():
 
 def main_menu():
     print_main_menu()
-    user_choice = raw_input(PROMPT)
+    user_choice = input(PROMPT)
     try:
         if int(user_choice[0]) in NAVIGATION.keys():
             DISPATCH[int(user_choice[0])](user_choice[2:])

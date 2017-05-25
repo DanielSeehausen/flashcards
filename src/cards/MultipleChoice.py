@@ -15,8 +15,10 @@ class MultipleChoice(Card):
 
     def display_question(self):
         Card.display_question(self)
-        for ch, choice in self.choice_dict.items():
+        for ch, choice in sorted(self.choice_dict.items()):
             print('\t' + ch + '. ' + choice)
 
-    def check_answer(self, input):
-        return True if self.choice_dict[input] in self.answers else False
+    def check_answer(self, user_input):
+        while user_input[0] not in self.choice_dict.keys():
+            user_input = input("\tEnter a valid choice: \n\t-->")
+        return True if self.choice_dict[user_input[0]] in self.answers else False

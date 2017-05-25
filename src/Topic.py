@@ -1,4 +1,4 @@
-import importlib
+import importlib, random
 from card_generator import generate_card
 
 class Topic:
@@ -29,3 +29,21 @@ class Topic:
         for idx, card in enumerate(all_cards):
             str_builder.append(str(idx+1) + '.\t' + str(card) + '\n')
         return '\n'.join(str_builder) + '\n'
+
+    def add_to_solved(self, card):
+        self.solved_cards.append(card)
+
+    def add_to_incorrect(self, card):
+        self.incorrect_cards.append(card)
+
+    def is_completed(self):
+        return True if (len(self.incorrect_cards) == 0 and len(self.unsolved_cards) == 0) else False
+
+    def prep_next_round(self):
+        self.solved_cards = []
+        self.unsolved_cards = self.incorrect_cards[:]
+        self.incorrect_cards = []
+        random.shuffle(self.unsolved_cards)
+
+    def get_card(self):
+        return False if self.is_completed() else self.unsolved_cards.pop()
