@@ -1,5 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
 import os, sys, importlib
+
+if sys.version_info[0] < 3:
+    raise Exception("Python 3 or a more recent version is required.")
 
 # TODO better way of doing this
 sys.path.append(os.path.join(os.path.dirname(__file__), "./data"))

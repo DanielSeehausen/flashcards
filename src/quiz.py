@@ -1,6 +1,7 @@
 import glob, sys
 from Session import Session
 
+
 #TODO separate main menu
 #TODO use regex to ignore multiple spaces?
 
