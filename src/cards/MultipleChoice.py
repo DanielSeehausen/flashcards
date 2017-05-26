@@ -20,8 +20,6 @@ class MultipleChoice(Card):
         print('')
 
     def check_answer(self, user_input):
-        print(self.answers)
-        print(self.choice_dict)
         try:
             return True if self.choice_dict[user_input[0]] in self.answers else False
         except (ValueError, IndexError, KeyError) as e:

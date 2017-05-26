@@ -1,7 +1,10 @@
 import random
 from Topic import Topic
+import quiz
 
 PROMPT = '\t--> '
+
+# TODO session and round could really be split
 
 def print_topic_completed(topic):
     print("\n*****\n" + topic + "COMPLETED\n*****\n")
@@ -19,9 +22,9 @@ class Session:
         for topic in topics:
             try:
                 self.topics[topic] = Topic(topic)
-                print('\t' + u'\u2713 ' + topic + '...loaded')
+                print('\t' + u'\u2713 ' + ' loaded succesfully')
             except ImportError:
-                print('\t' + u'\u2718 ' + topic + '...not found!')
+                print('\t' + u'\u2718 ' + 'Data file not found!')
 
     def run_card(self, card):
         card.display_question()
@@ -38,7 +41,9 @@ class Session:
         # removes the round topic once all cards have been attempted
         if len(topic.unsolved_cards) <= 1:
             round_topics.pop(topic_name, None)
-        return self.run_card(topic.get_card())
+        card = topic.get_card()
+        result = self.run_card(card)
+        topic.add_to_solved(card) if result else topic.add_to_incorrect(card)
 
     def get_unsolved_topics(self):
         unsolved_topics = {}
@@ -49,27 +54,33 @@ class Session:
 
     def end_session(self):
         self.complete = True
-        print("Session complete. Total rounds: " + self.round)
-        return
+        print('*'*33 + "\nSession complete. Total rounds: " + str(self.round) + '\nTopics completed: ', end='')
+        self.print_topics(self.topics)
+        print('*'*33 + '\n\n')
+        return quiz.main_menu()
+
 
     def execute_session_loop(self):
-        self.round += 1
         round_topics = self.get_unsolved_topics()
         if not len(round_topics):
-            self.end_session()
+            return self.end_session()
+        self.round += 1
         if self.round > 1:
             self.reset_cards(round_topics)
         print("\nStarting round " + str(self.round) + ".")
         self.start_round(round_topics)
+        return self.execute_session_loop()
 
     def prompt_user_for_round_start(self):
         input('\nEnter to begin')
         print(chr(27) + "[2J")
 
     def print_topics(self, round_topics):
-        print("TOPICS: ", end = "")
-        for topic_name in round_topics.keys():
-            print(topic_name + " || ", end = "")
+        for idx, topic_name in enumerate(round_topics.keys()):
+            if idx == len(round_topics)-1:
+                print(topic_name)
+            else:
+                print(topic_name + " || ", end = "")
 
     def execute_round(self, round_topics):
         while round_topics:

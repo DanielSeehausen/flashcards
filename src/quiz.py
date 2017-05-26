@@ -38,7 +38,7 @@ def how_to(_):
     main_menu()
 
 def exit(_):
-    print("\n\n***Goodbye***\n\n")
+    print("\n\n*** Goodbye ***\n\n")
     sys.exit()
 
 DISPATCH = {

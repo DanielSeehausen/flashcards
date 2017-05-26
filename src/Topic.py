@@ -14,14 +14,17 @@ class Topic:
         self.solved_cards = []
         self.unsolved_cards = self.generate_all_cards(card_data)
         self.incorrect_cards = [] # (e.g. cards that the user got incorrect when answering)
-        print(str(self))
 
     def generate_all_cards(self, card_data):
+        print('*** ' + self.topic_name + ' ***\n', end='')
         all_cards = []
-        for card in card_data:
+        for idx, card in enumerate(card_data):
             c = generate_card(card)
             all_cards.append(generate_card(card))
+            print('\r' + str(idx), end='')
         return all_cards
+
+
 
     def __str__(self):
         str_builder = ['***' + self.topic_name + '***\n']
@@ -37,6 +40,7 @@ class Topic:
         self.incorrect_cards.append(card)
 
     def is_completed(self):
+        # print('incorrect cs: ', self.incorrect_cards, 'unsolved cs: ', self.unsolved_cards)
         return True if (len(self.incorrect_cards) == 0 and len(self.unsolved_cards) == 0) else False
 
     def prep_next_round(self):
