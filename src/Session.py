@@ -52,7 +52,7 @@ class Session:
         print("Session complete. Total rounds: " + self.round)
         return
 
-    def prep_round(self):
+    def execute_session_loop(self):
         self.round += 1
         round_topics = self.get_unsolved_topics()
         if not len(round_topics):
@@ -62,14 +62,24 @@ class Session:
         print("\nStarting round " + str(self.round) + ".")
         self.start_round(round_topics)
 
-    def start_round(self, round_topics):
+    def prompt_user_for_round_start(self):
+        input('\nEnter to begin')
+        print(chr(27) + "[2J")
+
+    def print_topics(self, round_topics):
         print("TOPICS: ", end = "")
         for topic_name in round_topics.keys():
             print(topic_name + " || ", end = "")
-        print('\n')
+
+    def execute_round(self, round_topics):
         while round_topics:
             self.run_random_card(round_topics)
+            print('\n\n') # footer to give some space between cards
 
+    def start_round(self, round_topics):
+        self.print_topics(round_topics)
+        self.prompt_user_for_round_start()
+        self.execute_round(round_topics)
 
     def reset_cards(self, round_topics):
         for topic_name, topic in round_topics.items():

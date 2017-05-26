@@ -10,21 +10,14 @@
 card_data = [
     {
         't' : 'f',
-        'q' : 'Why is choux handsome?',
-        'a' : 'maru',
-        'n' : 'did you know: maru is too.'
+        'q' : 'this is seeed data q1',
+        'a' : 'sda1',
+        'n' : 'sdn1.'
     },
     {
-        't' : 'm',
-        'q' : 'If ken and linus had a h@cker duel, who would win?',
-        'a' : 'linus',
-        'm' : ['other option', 'yet another', 'one more'],
-        'n' : "You don't want to be a nag, do you?"
-    },
-    {
-        't' : 'p',
-        'q' : 'The pattern "xxa" should be matched',
-        'a' : ["xxa", "XXA"],
-        'n' : ['a6', 'a6']
+        't' : 'f',
+        'q' : 'this is seeed data q2',
+        'a' : 'sda2',
+        'n' : 'sdn2.'
     },
 ]

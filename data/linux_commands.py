@@ -24,7 +24,6 @@ card_data = [
     {
         't' : 'p',
         'q' : 'The pattern "xxa" should be matched',
-        'a' : ["xxa", "XXA"],
-        'n' : ['a6', 'a6']
+        'a' : ["xxa", "XXA"]
     },
 ]

@@ -11,6 +11,8 @@ class FreeAnswer(Card):
 
     def check_answer(self, user_input=None):
         self.display_answer()
-        honesty = input('\tDid you get it correct? [y/n] > ')
-        Card.display_footer(self)
-        return True if honesty[0].lower() is 'y' else False
+        try:
+            honesty = input('\n\tDid you get it correct? [y/n] > ')
+            return True if honesty[0].lower() is 'y' else False
+        except (ValueError, IndexError) as e:
+            return True # they just hit enter

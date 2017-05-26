@@ -30,7 +30,7 @@ def start(topics=[]):
         print("\nNo user specified topics found!")
         topics = get_all_topic_names()
     session = Session(topics)
-    session.prep_round()
+    session.execute_session_loop()
 
 def how_to(_):
     print('\nStart game <1> to begin testing with flash cards from all topics available OR with optional topic names, (separated by single spaces), to test only the cards within those topics (i.e. <1 topic_a topic_b>).')

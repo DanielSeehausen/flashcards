@@ -11,10 +11,10 @@ class Card:
             self.choices = data['m'] if type(data['n']) is list else [data['n']]
 
     def display_header(self):
-        print('\t*****')
+        print('\t' + '*'*20)
 
     def display_footer(self):
-        print('\n\n')
+        pass
 
     def display_question(self):
         self.display_header()
@@ -25,15 +25,15 @@ class Card:
     def display_answer(self):
         for answer in self.answers:
             print('\t[A] ' + answer)
-        self.display_footer()
 
     def display_note(self):
-        if self.notes:
+        try:
             for msg in self.notes:
                 print('\t' + msg)
-        self.display_footer()
+        except AttributeError:
+            pass
 
-    # we converted singular answers to a list so we can check against all options
+    # converted singular answers to a list when card was loaded
     def check_answer(self, input):
         return True if input in self.answers else False
 
