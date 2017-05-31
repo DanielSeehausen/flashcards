@@ -23,4 +23,4 @@ class MultipleChoice(Card):
         try:
             return True if self.choice_dict[user_input[0]] in self.answers else False
         except (ValueError, IndexError, KeyError) as e:
-            return self.check_answer(input("\tEnter a valid choice: \n\t-->"))
+            return self.check_answer(input("\tEnter a valid choice: \n\t--> "))

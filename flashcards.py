@@ -6,6 +6,9 @@ if sys.version_info[0] < 3:
     raise Exception("Python 3 or a more recent version is required.")
 
 # TODO better way of doing this
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
 sys.path.append(os.path.join(os.path.dirname(__file__), "./data"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "./src"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "./src/cards"))

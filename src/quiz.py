@@ -1,4 +1,4 @@
-import glob, sys
+import glob, sys, os
 from Session import Session
 
 
@@ -15,6 +15,7 @@ NAVIGATION = {
 PROMPT = '> '
 
 def get_all_topic_names():
+    print([x.split('/')[-1][:-3:] for x in glob.iglob('./data/*.py')])
     return [x.split('/')[-1][:-3:] for x in glob.iglob('./data/*.py')]
 
 def show_topics(_):
